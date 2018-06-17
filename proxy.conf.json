@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://nk-tree.herokuapp.com/",
+    "target": "http://localhost:8090/",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",

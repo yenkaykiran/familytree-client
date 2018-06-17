@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   };
   show:boolean = false;
 
-  constructor(private route: Router, private location: Location) { }
+  constructor(private route: Router, private location: Location, private tokenService: TokenService) { }
 
   isIn = false;
   name: string;
