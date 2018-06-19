@@ -21,6 +21,7 @@ export class Member {
   dateOfBirth: string;
   place: string;
   contact: string;
+  gothram: string;
   son: Member[];
   daughter: Member[];
   spouse: Member[];
