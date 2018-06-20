@@ -49,18 +49,6 @@
       <label for="contact">Contact</label>
       <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter Contact" [(ngModel)]="member.contact" />
     </div>
-    <div class="form-group">
-      <label for="gothram">Gothram</label>
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-warning" id="gothram" type="button" ngbDropdownToggle>
-          <span *ngIf="member.gothram">{{member.gothram.name}}</span>
-          <span *ngIf="!member.gothram">Select Gothram</span>
-        </button>
-        <div ngbDropdownMenu aria-labelledby="gothram">
-          <button class="dropdown-item" *ngFor="let g of gothrams" (click)="member.gothram=g" type="button">{{g.name}}</button>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(member)">Close</button>

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Member, MemberHolder } from "../model/member";
+import { Member, MemberData, MemberHolder } from "../model/member";
+
+import { Gothram } from "../model/gothram";
 
 @Injectable()
 export class MemberService {
@@ -55,6 +57,30 @@ export class MemberService {
     return this.http.post("api/unlink?source=" + source + "&destination=" + destination + "&relation=" + relation, {})
          .map((res: Response) => {
            return res;
+         })
+         .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+  }
+
+  export(): Observable<Response> {
+    return this.http.get("api/export")
+         .map((res: Response) => {
+           return res;
+         })
+         .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+  }
+
+  importData(memberData: MemberData[]): Observable<Response> {
+    return this.http.post("api/import", memberData)
+         .map((res: Response) => {
+           return res;
+         })
+         .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+  }
+
+  attachGothram(member: Member, gothram: Gothram): Observable<Member> {
+    return this.http.post("api/attach-gothram?member=" + member.id + "&gothram=" + gothram.id, {})
+         .map((res: Response) => {
+           return res.json();
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }

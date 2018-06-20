@@ -1,0 +1,6 @@
+<h4>Import Content</h4>
+<button type="button" class="btn btn-outline-info" (click)="importContent()" *ngIf="importedData">
+    <span class="fa fa-add"></span>
+    <span class="hidden-md-down">Import</span>
+</button>
+<textarea id="imported" class="form-control" rows="25" [(ngModel)]="pretty"></textarea>

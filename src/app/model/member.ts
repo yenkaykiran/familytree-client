@@ -23,6 +23,7 @@ export class Member {
   place: string;
   contact: string;
   gothram: Gothram;
+  gothramId: number;
   son: Member[];
   daughter: Member[];
   spouse: Member[];

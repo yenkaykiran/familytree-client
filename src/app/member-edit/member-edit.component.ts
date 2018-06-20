@@ -21,18 +21,11 @@ export class MemberEditComponent implements OnInit {
   gothrams: Gothram[];
 
   ngOnInit() {
-    this.getAllGothrams();
   }
 
   save() {
     this.service.save(this.member).subscribe((res: Member) => {
       this.activeModal.close(res);
-    });
-  }
-
-  getAllGothrams() {
-    this.gService.getAll().subscribe((res: GothramHolder) => {
-      this.gothrams = res.gothrams;
     });
   }
 }

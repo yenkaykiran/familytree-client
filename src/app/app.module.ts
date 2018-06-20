@@ -31,6 +31,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { TokenService } from './services/token.service';
 import { GothramEditComponent } from './gothram-edit/gothram-edit.component';
+import { ImportDataComponent } from './import-data/import-data.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
   { path: 'cyto-render', component: MemberListCytoComponent, canActivate: [AuthGuard] },
   { path: 'cyto-render/:name', component: MemberListCytoComponent, canActivate: [AuthGuard] },
   { path: 'export', component: ExportComponent, canActivate: [AuthGuard] },
+  { path: 'import', component: ImportDataComponent, canActivate: [AuthGuard] },
   { path: '', component: MemberListComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
@@ -59,7 +61,8 @@ const appRoutes: Routes = [
     ExportComponent,
     GothramComponent,
     GothramListComponent,
-    GothramEditComponent
+    GothramEditComponent,
+    ImportDataComponent
   ],
   imports: [
     FormsModule,
