@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Member, MemberData, MemberHolder } from "../model/member";
-
+import { Member, MemberHolder } from "../model/member";
+import { MemberData } from "../model/member-data";
 import { Gothram } from "../model/gothram";
 
 @Injectable()
