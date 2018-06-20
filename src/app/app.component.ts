@@ -63,12 +63,14 @@ export class AppComponent implements OnInit {
   getAllByName(name) {
     var current = this.location.path();
     if(current) {
-      if(!current.startsWith('/list') && !current.startsWith('/cyto-render')) {
+      if(!current.startsWith('/list') && !current.startsWith('/cyto-render') && !current.startsWith('/gothram')) {
         current = "/list";
       } else if (current.startsWith('/list')){
-        current = '/list'
+        current = '/list';
       } else if (current.startsWith('/cyto-render')){
-        current = '/cyto-render'
+        current = '/cyto-render';
+      } else if (current.startsWith('/gothram')){
+        current = '/gothram';
       }
     } else {
       current = "/list";
