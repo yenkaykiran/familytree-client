@@ -61,6 +61,7 @@ export class AppComponent implements OnInit {
   }
 
   getAllByName(name) {
+    this.cdr.detectChanges();
     var current = this.location.path();
     if(current) {
       if(!current.startsWith('/list') && !current.startsWith('/cyto-render')) {
