@@ -1,4 +1,5 @@
 import { Gender } from './gender.enum';
+import { Gothram } from './gothram';
 
 export class Page {
   size: number;
@@ -21,7 +22,7 @@ export class Member {
   dateOfBirth: string;
   place: string;
   contact: string;
-  gothram: string;
+  gothram: Gothram;
   son: Member[];
   daughter: Member[];
   spouse: Member[];

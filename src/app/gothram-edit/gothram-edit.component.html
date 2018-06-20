@@ -1,0 +1,22 @@
+<form (ngSubmit)="save()">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Gothram</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close(gothram)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group" *ngIf="gothram.id">
+      <label for="id">ID</label>
+      <input type="text" class="form-control" id="id" name="id" [(ngModel)]="gothram.id" [disabled]="true" />
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" [(ngModel)]="gothram.name" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(gothram)">Close</button>
+    <button type="submit" class="btn btn-outline-success">Save</button>
+  </div>
+</form>

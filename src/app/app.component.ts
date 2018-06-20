@@ -1,4 +1,4 @@
-import { Component, OnInit, ContentChild } from '@angular/core';
+import { Component, OnInit, ContentChild, ChangeDetectorRef } from '@angular/core';
 
 import { MemberListComponent } from './member-list/member-list.component';
 
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   };
   show:boolean = false;
 
-  constructor(private route: Router, private location: Location, private tokenService: TokenService) { }
+  constructor(private route: Router, private location: Location, private tokenService: TokenService, private cdr: ChangeDetectorRef) { }
 
   isIn = false;
   name: string;
@@ -75,5 +75,9 @@ export class AppComponent implements OnInit {
       name = '';
     }
     this.route.navigate([current + '/' + name]);
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 }

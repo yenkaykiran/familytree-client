@@ -1,0 +1,19 @@
+<div class="card" *ngIf="gothram">
+  <div class="card ">
+    <div class="card-header">
+      {{gothram.name}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title" *ngIf="gothram.name">{{gothram.name}}</h5>
+      <button (click)="open()" class="btn btn-outline-primary btn-sm card-link" type="button">
+          <span class="fa fa-pencil"></span>
+          <span class="hidden-md-down">Edit</span>
+      </button>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete()" >
+          <span class="fa fa-remove"></span>
+          <span class="hidden-md-down">Delete</span>
+      </button>
+    </div>
+  </div>
+</div>
+<br />

@@ -1,0 +1,12 @@
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <button class="btn btn-outline-primary" (click)="add()">
+          <span class="fa fa-plus"></span>
+          <span>Add</span>
+      </button>
+      <br /><br />
+      <div *ngIf="gothramsHolder">
+        <app-gothram *ngFor="let gothram of gothrams; trackBy index;" [gothram]="gothram"></app-gothram>
+      </div>
+    </div>
+  </div>

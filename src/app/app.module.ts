@@ -10,7 +10,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MemberComponent } from './member/member.component';
+import { GothramComponent } from './gothram/gothram.component';
+import { GothramListComponent } from './gothram-list/gothram-list.component';
 import { MemberService } from './member/member.service';
+import { GothramService } from './gothram/gothram.service';
 
 import { RouterModule, Routes } from '@angular/router';
 import { MemberListComponent } from './member-list/member-list.component';
@@ -27,13 +30,18 @@ import { httpFactory } from "./interceptors/backend";
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { TokenService } from './services/token.service';
+import { GothramEditComponent } from './gothram-edit/gothram-edit.component';
 
 const appRoutes: Routes = [
-  { path: '', component: MemberListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'list', component: MemberListComponent, canActivate: [AuthGuard] },
   { path: 'list/:name', component: MemberListComponent, canActivate: [AuthGuard] },
+  { path: 'gothram', component: GothramListComponent, canActivate: [AuthGuard] },
+  { path: 'gothram/:name', component: GothramListComponent, canActivate: [AuthGuard] },
+  { path: 'cyto-render', component: MemberListCytoComponent, canActivate: [AuthGuard] },
   { path: 'cyto-render/:name', component: MemberListCytoComponent, canActivate: [AuthGuard] },
   { path: 'export', component: ExportComponent, canActivate: [AuthGuard] },
+  { path: '', component: MemberListComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 
@@ -48,7 +56,10 @@ const appRoutes: Routes = [
     MemberUnlinkComponent,
     MemberListCytoComponent,
     CytoscapeComponent,
-    ExportComponent
+    ExportComponent,
+    GothramComponent,
+    GothramListComponent,
+    GothramEditComponent
   ],
   imports: [
     FormsModule,
@@ -59,12 +70,13 @@ const appRoutes: Routes = [
     SimpleNotificationsModule.forRoot(),
     RouterModule.forRoot(
       appRoutes
-      // , { enableTracing: true } // <-- debugging purposes only
+      , { enableTracing: true } // <-- debugging purposes only
     )
   ],
   providers: [
     HttpModule,
     MemberService,
+    GothramService,
     AuthGuard,
   	{
   		provide: Http,
@@ -76,7 +88,8 @@ const appRoutes: Routes = [
   ],
   entryComponents: [
     MemberEditComponent,
-    MemberLinkComponent
+    MemberLinkComponent,
+    GothramEditComponent
   ],
   bootstrap: [AppComponent]
 })
