@@ -19,13 +19,44 @@ export class MemberEditComponent implements OnInit {
   @Input('member') member: Member;
 
   gothrams: Gothram[];
+  gothram: Gothram;
+  isSaving: boolean;
 
   ngOnInit() {
+    this.isSaving = false;
+    this.getAllGothrams();
   }
 
   save() {
+    this.isSaving = true;
+    if(this.gothram) {
+      this.member.gothramId = this.gothram.id;
+    }
     this.service.save(this.member).subscribe((res: Member) => {
+      this.isSaving = false;
+      this.service.attachGothram(res, this.gothram).subscribe((response: Member) => {
+        this.member = response;
+        this.prepareGothram();
+      });
       this.activeModal.close(res);
     });
+  }
+
+  getAllGothrams() {
+    this.gService.getAll().subscribe((res: GothramHolder) => {
+      this.gothrams = res.gothrams;
+      this.prepareGothram();
+    });
+  }
+
+  prepareGothram() {
+    if(this.gothrams && this.gothrams.length > 0 && this.member.gothramId) {
+      for(var i = 0; i < this.gothrams.length; i++) {
+        if(this.gothrams[i].id == this.member.gothramId) {
+          this.gothram = this.gothrams[i];
+          break;
+        }
+      }
+    }
   }
 }

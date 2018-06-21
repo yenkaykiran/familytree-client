@@ -11,17 +11,6 @@
     <div class="card-body">
       <h5 class="card-title" *ngIf="member.familyName">{{member.familyName}}</h5>
       <p class="card-text" *ngIf="member.alternateFamilyName">{{member.alternateFamilyName}}</p>
-      <div class="form-group">
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-warning" id="gothram" type="button" ngbDropdownToggle>
-            <span *ngIf="member.gothram">{{member.gothram.name}}</span>
-            <span *ngIf="!member.gothram">Select Gothram</span>
-          </button>
-          <div ngbDropdownMenu aria-labelledby="gothram">
-            <button class="dropdown-item" *ngFor="let g of gothrams" (click)="member.gothram = g; attachGothram(member, g)" type="button">{{g.name}}</button>
-          </div>
-        </div>
-      </div>
       <button (click)="open()" class="btn btn-outline-primary btn-sm card-link" type="button">
           <span class="fa fa-pencil"></span>
           <span class="hidden-md-down">Edit</span>

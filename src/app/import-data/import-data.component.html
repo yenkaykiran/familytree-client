@@ -3,4 +3,8 @@
     <span class="fa fa-add"></span>
     <span class="hidden-md-down">Import</span>
 </button>
+
+<br /><br />
+<app-cytoscape [elements]="graphData"></app-cytoscape>
+<br /><br />
 <textarea id="imported" class="form-control" rows="25" [(ngModel)]="pretty"></textarea>
