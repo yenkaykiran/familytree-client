@@ -23,6 +23,8 @@ export class CytoscapeComponent implements OnChanges {
           name: 'grid',
           directed: true,
           padding: 0
+          // name: 'Radial',
+          // options: { angleWidth: 180, radius: 80 }
       };
 
       this.zoom = this.zoom || {
@@ -34,11 +36,11 @@ export class CytoscapeComponent implements OnChanges {
           .selector('node')
           .css({
               'content': 'data(name)',
-              'shape': 'rectangle',
+              'shape': 'data(shape)',
               'text-valign': 'center',
               'background-color': 'data(faveColor)',
               'width': '200px',
-              'height': '100px',
+              'height': '80px',
               'color': 'black'
           })
           .selector(':selected')
@@ -72,7 +74,6 @@ export class CytoscapeComponent implements OnChanges {
 
     public ngOnChanges(): any {
         this.render();
-        console.log(this.el.nativeElement);
     }
 
     public render() {
@@ -84,7 +85,7 @@ export class CytoscapeComponent implements OnChanges {
             minZoom: this.zoom.min,
             maxZoom: this.zoom.max,
             style: this.style,
-            elements: this.elements,
+            elements: this.elements
         });
 
 

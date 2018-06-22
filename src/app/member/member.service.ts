@@ -11,7 +11,7 @@ export class MemberService {
   constructor(private http: Http) { }
 
   getAll(page): Observable<MemberHolder> {
-    return this.http.get("api/member?page=" + page)
+    return this.http.get("api/member?page=" + page + "&sort=dateOfBirth,desc")
          .map((res: Response) => {
            return this.convertData(res.json());
          })
@@ -19,7 +19,7 @@ export class MemberService {
   }
 
   getAllByName(name): Observable<MemberHolder> {
-    return this.http.get("api/member/search/nameStartsWith?name=" + name)
+    return this.http.get("api/member/search/nameStartsWith?name=" + name + "&sort=dateOfBirth,desc")
          .map((res: Response) => {
            return this.convertData(res.json());
          })
@@ -39,7 +39,7 @@ export class MemberService {
   }
 
   fetchRelated(relation: string, member: Member): Observable<MemberHolder> {
-    return this.http.get("api/member/" + member.id + "/" + relation)
+    return this.http.get("api/member/" + member.id + "/" + relation + "?sort=dateOfBirth,desc")
          .map((res: Response) => {
            return this.convertData(res.json());
          });
