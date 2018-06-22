@@ -61,10 +61,10 @@ export class MemberService {
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
 
-  export(): Observable<Response> {
+  export(): Observable<MemberData[]> {
     return this.http.get("api/export")
          .map((res: Response) => {
-           return res;
+           return res.json();
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }

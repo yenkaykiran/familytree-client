@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MemberData } from "../model/member-data";
+
 import { MemberService } from '../member/member.service';
 import { Http, Response } from '@angular/http';
 
@@ -15,8 +17,8 @@ export class ExportComponent implements OnInit {
   exported: string;
 
   ngOnInit() {
-    this.service.export().subscribe((res: Response) => {
-      this.exported = res.text();
+    this.service.export().subscribe((res: MemberData[]) => {
+      this.exported = JSON.stringify(res);
     });
   }
 

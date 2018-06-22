@@ -6,13 +6,6 @@ declare var cytoscape: any;
 @Component({
   selector: 'app-cytoscape',
   templateUrl: './cytoscape.component.html',
-  styles: [`#cy {
-          height: 100%;
-          width: 100%;
-          position: absolute;
-          left: 0;
-          top: 0;
-      }`],
   styleUrls: ['./cytoscape.component.css']
 })
 export class CytoscapeComponent implements OnChanges {
@@ -60,8 +53,8 @@ export class CytoscapeComponent implements OnChanges {
               'curve-style': 'bezier',
               'opacity': 0.666,
               'width': 'mapData(strength, 70, 100, 2, 6)',
-              'target-arrow-shape': 'triangle'
-              , 'line-color': 'data(faveColor)',
+              'target-arrow-shape': 'triangle',
+              'line-color': 'data(faveColor)',
               'source-arrow-color': 'data(faveColor)',
               'target-arrow-color': 'data(faveColor)'
           })
@@ -97,11 +90,13 @@ export class CytoscapeComponent implements OnChanges {
 
         cy.on('tap', 'node', function(e) {
             var node = e.cyTarget;
-            var neighborhood = node.neighborhood().add(node);
+            if(node) {
+              var neighborhood = node.neighborhood().add(node);
 
-            cy.elements().addClass('faded');
-            neighborhood.removeClass('faded');
-            localselect.emit(node.data("name"));
+              cy.elements().addClass('faded');
+              neighborhood.removeClass('faded');
+              localselect.emit(node.data("name"));
+            }
         });
 
         cy.on('tap', function(e) {
@@ -109,8 +104,15 @@ export class CytoscapeComponent implements OnChanges {
                     cy.elements().removeClass('faded');
                 }
         });
-    }
 
+      // jQuery(this.el.nativeElement).cytoscape({
+      //       layout: this.layout,
+      //       minZoom: this.zoom.min,
+      //       maxZoom: this.zoom.max,
+      //       style: this.style,
+      //       elements: this.elements,
+      //   });
+    }
 }
 
 export default CytoscapeComponent;
