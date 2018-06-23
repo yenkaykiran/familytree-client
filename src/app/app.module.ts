@@ -20,8 +20,7 @@ import { MemberListComponent } from './member-list/member-list.component';
 import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MemberLinkComponent } from './member-link/member-link.component';
 import { MemberUnlinkComponent } from './member-unlink/member-unlink.component';
-import { MemberListCytoComponent } from './member-list-cyto/member-list-cyto.component';
-import { CytoscapeComponent } from './cytoscape/cytoscape.component';
+import { RenderEngineComponent } from './render-engine/render-engine.component';
 import { ExportComponent } from './export/export.component';
 
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
@@ -57,8 +56,7 @@ const appRoutes: Routes = [
     MemberEditComponent,
     MemberLinkComponent,
     MemberUnlinkComponent,
-    MemberListCytoComponent,
-    CytoscapeComponent,
+    RenderEngineComponent,
     ExportComponent,
     GothramComponent,
     GothramListComponent,

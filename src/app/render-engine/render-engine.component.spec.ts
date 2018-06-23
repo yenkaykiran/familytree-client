@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemberListCytoComponent } from './member-list-cyto.component';
+import { RenderEngineComponent } from './render-engine.component';
 
-describe('MemberListCytoComponent', () => {
-  let component: MemberListCytoComponent;
-  let fixture: ComponentFixture<MemberListCytoComponent>;
+describe('RenderEngineComponent', () => {
+  let component: RenderEngineComponent;
+  let fixture: ComponentFixture<RenderEngineComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberListCytoComponent ]
+      declarations: [ RenderEngineComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemberListCytoComponent);
+    fixture = TestBed.createComponent(RenderEngineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

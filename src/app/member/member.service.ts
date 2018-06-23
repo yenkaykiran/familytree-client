@@ -5,14 +5,17 @@ import { Member, MemberHolder } from "../model/member";
 import { MemberData } from "../model/member-data";
 import { Gothram } from "../model/gothram";
 
+import { NotificationsService } from 'angular2-notifications';
+
 @Injectable()
 export class MemberService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private notificationsService: NotificationsService) { }
 
   getAll(page): Observable<MemberHolder> {
     return this.http.get("api/member?page=" + page + "&sort=dateOfBirth,desc")
          .map((res: Response) => {
+           this.notificationsService.success("Members List Received");
            return this.convertData(res.json());
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
@@ -21,6 +24,7 @@ export class MemberService {
   getAllByName(name): Observable<MemberHolder> {
     return this.http.get("api/member/search/nameStartsWith?name=" + name + "&sort=dateOfBirth,desc")
          .map((res: Response) => {
+           this.notificationsService.success("Members List by Name " + name + "Received");
            return this.convertData(res.json());
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
@@ -29,18 +33,21 @@ export class MemberService {
   save(member: Member): Observable<Member> {
     return this.http.post("api/member/", member)
          .map((res: Response) => {
+           this.notificationsService.success("Member Saved Sucessfully");
            return res.json();
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
 
   delete(id: number): Observable<Response> {
+    this.notificationsService.success("Member Removed Successfully");
     return this.http.delete("api/member/" + id);
   }
 
   fetchRelated(relation: string, member: Member): Observable<MemberHolder> {
     return this.http.get("api/member/" + member.id + "/" + relation + "?sort=dateOfBirth,desc")
          .map((res: Response) => {
+           this.notificationsService.success("Related Members List Received");
            return this.convertData(res.json());
          });
   }
@@ -48,6 +55,7 @@ export class MemberService {
   linkMembers(source: number, destination: number, relation: string): Observable<Response> {
     return this.http.post("api/link?source=" + source + "&destination=" + destination + "&relation=" + relation, {})
          .map((res: Response) => {
+           this.notificationsService.success("Member Successfully Linked");
            return res;
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
@@ -56,6 +64,7 @@ export class MemberService {
   unlinkMembers(source: number, destination: number, relation: string): Observable<Response> {
     return this.http.post("api/unlink?source=" + source + "&destination=" + destination + "&relation=" + relation, {})
          .map((res: Response) => {
+           this.notificationsService.success("Member Successfully UnLinked");
            return res;
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
@@ -64,6 +73,7 @@ export class MemberService {
   export(): Observable<MemberData[]> {
     return this.http.get("api/export")
          .map((res: Response) => {
+           this.notificationsService.success("Members Data Successfully Exported");
            return res.json();
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
@@ -72,6 +82,7 @@ export class MemberService {
   importData(memberData: MemberData[]): Observable<Response> {
     return this.http.post("api/import", memberData)
          .map((res: Response) => {
+           this.notificationsService.success("Members Data Successfully Imported");
            return res;
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));

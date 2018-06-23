@@ -17,41 +17,49 @@ export class RenderComponent implements OnInit {
 
   mData: MemberData[];
 
-  faveColor = '#6FB1FC';
-  faveShape = 'ellipse';
-
   graphData = {
     nodes: [],
     edges: []
   };
 
   ngOnInit() {
-    this.service.export().subscribe((res: MemberData[]) => {
-      this.mData = res;
-      this.graphData = {
-        nodes: [],
-        edges: []
-      };
-      for(var i = 0; i < res.length; i++) {
-        var m = res[i];
-        var d = {data: {id: m.id, name: m.name, faveColor: this.faveColor, faveShape: this.faveShape, shape: "ellipse"}};
-        this.graphData.nodes.push(d);
-        this.prepareEdges(m.id, m.son, "Son", "#FF8333");
-        this.prepareEdges(m.id, m.daughter, "Daughter", "#56AF3C");
-        if(m.gender.toString() == "MALE") {
-          this.prepareEdges(m.id, m.spouse, "Wife", "#8C5438");
-        }
-      }
-    });
+      this.service.export().subscribe((res: MemberData[]) => {
+          this.mData = res;
+          this.graphData = {
+              nodes: [],
+              edges: []
+          };
+          for (var i = 0; i < res.length; i++) {
+              var m = res[i];
+              var d = {
+                  id: m.id,
+                  label: m.name,
+                  title: m.familyName
+              };
+              this.graphData.nodes.push(d);
+              this.prepareEdges(m.id, m.son, "Son", "#F98866", 'to');
+              this.prepareEdges(m.id, m.daughter, "Daughter", "#FF420E", 'to');
+              if (m.gender.toString() == "MALE") {
+                  this.prepareEdges(m.id, m.spouse, "Spouse", "#80BD9E", 'from,to');
+              }
+          }
+      });
   }
 
-  prepareEdges(id: number, array: number[], edgeLabel: string, edgeColor: string) {
-    if(array && array.length > 0) {
-      for(var j = 0; j < array.length; j++) {
-        var e = {data: {source: id, target: array[j], faveColor: edgeColor, label: edgeLabel}};
-        this.graphData.edges.push(e);
+  prepareEdges(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string) {
+      if (array && array.length > 0) {
+          for (var j = 0; j < array.length; j++) {
+              var e = {
+                  from: id,
+                  to: array[j],
+                  arrows: arrows,
+                  label: edgeLabel,
+                  color: {
+                      color: edgeColor
+                  }
+              };
+              this.graphData.edges.push(e);
+          }
       }
-    }
   }
-
 }
