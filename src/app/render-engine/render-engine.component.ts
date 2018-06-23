@@ -27,11 +27,13 @@ export class RenderEngineComponent implements OnChanges, OnInit {
     positiony = 300;
     duration = 10000;
     easingFunction = "easeInOutQuad";
-    showInterval = false;
+    showInterval = true;
     amountOfNodes = 25;
     showPhase = 1;
 
     network : Network;
+
+    btnVisible = false;
 
     ngOnChanges(): any {
         this.render();
@@ -40,10 +42,12 @@ export class RenderEngineComponent implements OnChanges, OnInit {
     ngOnInit() {
       setTimeout(() => {
         this.startShow();
+        this.btnVisible = true;
       }, 5000);
     }
 
     focusRandom() {
+      if(this.elements && this.elements.nodes && this.elements.nodes.length > 0) {
         var nodeId = this.elements.nodes[Math.floor(Math.random() * this.elements.nodes.length)].id;
         var options = {
             scale: this.scale,
@@ -57,6 +61,7 @@ export class RenderEngineComponent implements OnChanges, OnInit {
             }
         };
         this.network.focus(nodeId, options);
+      }
     }
 
     doTheShow() {
@@ -118,5 +123,14 @@ export class RenderEngineComponent implements OnChanges, OnInit {
             width: '100%'
         };
         this.network = new Network(container, data, options);
+        this.network.on("afterDrawing", function (ctx) {
+          var dataURL = ctx.canvas.toDataURL();
+          var link = document.getElementById('link');
+          if(link) {
+            link.setAttribute('download', 'NK-Tree.png');
+            link.setAttribute('href', ctx.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+          }
+          // link.click();
+        });
     }
 }
