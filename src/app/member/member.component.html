@@ -11,15 +11,24 @@
     <div class="card-body">
       <h5 class="card-title" *ngIf="member.familyName">{{member.familyName}}</h5>
       <p class="card-text" *ngIf="member.alternateFamilyName">{{member.alternateFamilyName}}</p>
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary btn-sm" id="gothram" type="button" ngbDropdownToggle>
+          <span *ngIf="gothram">{{gothram.name}}</span>
+          <span *ngIf="!gothram">Select Gothram</span>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="gothram">
+          <button class="dropdown-item btn-sm" *ngFor="let g of gothrams" (click)="gothram = g" type="button">{{g.name}}</button>
+        </div>
+      </div>
       <button (click)="open()" class="btn btn-outline-primary btn-sm card-link" type="button">
           <span class="fa fa-pencil"></span>
           <span class="hidden-md-down">Edit</span>
       </button>
-      <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete()" >
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete()" onclick="alert('Deleting this Member!')" >
           <span class="fa fa-remove"></span>
-          <span class="hidden-md-down">Delete</span>
+                  <span class="hidden-md-down">Delete</span>
       </button>
-    </div>
+
   </div>
 </div>
 <br />

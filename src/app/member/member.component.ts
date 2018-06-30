@@ -8,6 +8,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { MemberEditComponent } from '../member-edit/member-edit.component';
 
+import { Gothram, GothramHolder } from '../model/gothram';
+import { GothramService } from '../gothram/gothram.service';
+
 @Component({
   selector: 'app-member',
   templateUrl: './member.component.html',
@@ -15,13 +18,17 @@ import { MemberEditComponent } from '../member-edit/member-edit.component';
 })
 export class MemberComponent implements OnInit {
 
-  constructor(private service: MemberService, private modalService: NgbModal) { }
+  constructor(private service: MemberService, private modalService: NgbModal, private gService: GothramService) { }
 
   @Input('member') member: Member;
   @Input('gothramId') gothramId: number;
   @Output('fetchRelated') related = new EventEmitter<any>();
 
+  gothrams: Gothram[];
+  gothram: Gothram;
+
   ngOnInit() {
+    this.getAllGothrams();
   }
 
   open() {
@@ -43,5 +50,23 @@ export class MemberComponent implements OnInit {
       'relation': rel,
       'title': title
     });
+  }
+
+  getAllGothrams() {
+    this.gService.getAll().subscribe((res: GothramHolder) => {
+      this.gothrams = res.gothrams;
+      this.prepareGothram();
+    });
+  }
+
+  prepareGothram() {
+    if(this.gothrams && this.gothrams.length > 0 && this.member.gothramId) {
+      for(var i = 0; i < this.gothrams.length; i++) {
+        if(this.gothrams[i].id == this.member.gothramId) {
+          this.gothram = this.gothrams[i];
+          break;
+        }
+      }
+    }
   }
 }

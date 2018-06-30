@@ -13,7 +13,7 @@ export class GothramService {
   getAll(): Observable<GothramHolder> {
     return this.http.get("api/gothram")
          .map((res: Response) => {
-           this.notificationsService.success("Gothrams List Received");
+           // this.notificationsService.success("Gothrams List Received");
            return this.convertData(res.json());
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
