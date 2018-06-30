@@ -16,6 +16,8 @@ export class ImportDataComponent implements OnInit {
 
   importedData: MemberData[];
 
+  wait = false;
+
   ngOnInit() {
   }
 
@@ -24,8 +26,12 @@ export class ImportDataComponent implements OnInit {
   }
 
   importContent() {
+    this.wait = true;
     this.service.importData(this.importedData).subscribe((res: Response) => {
+      this.wait = false;
       alert(res.statusText);
+    }, () => {
+      this.wait = false;
     });
   }
 

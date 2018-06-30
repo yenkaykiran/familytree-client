@@ -1,5 +1,5 @@
 <h4>Import Content</h4>
-<button type="button" class="btn btn-outline-info float-right" (click)="importContent()" *ngIf="importedData">
+<button type="button" class="btn btn-outline-info float-right" (click)="importContent()" *ngIf="importedData" [disabled]="wait == true">
     <span class="fa fa-add"></span>
     <span class="hidden-md-down">Import</span>
 </button>

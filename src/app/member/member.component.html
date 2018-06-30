@@ -17,7 +17,7 @@
           <span *ngIf="!gothram">Select Gothram</span>
         </button>
         <div ngbDropdownMenu aria-labelledby="gothram">
-          <button class="dropdown-item btn-sm" *ngFor="let g of gothrams" (click)="gothram = g" type="button">{{g.name}}</button>
+          <button class="dropdown-item btn-sm" *ngFor="let g of gothrams" (click)="gothram = g; save()" type="button">{{g.name}}</button>
         </div>
       </div>
       <button (click)="open()" class="btn btn-outline-primary btn-sm card-link" type="button">

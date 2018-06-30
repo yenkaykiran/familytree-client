@@ -69,4 +69,14 @@ export class MemberComponent implements OnInit {
       }
     }
   }
+
+  save() {
+    if(this.gothram) {
+      this.member.gothramId = this.gothram.id;
+    }
+    this.service.attachGothram(this.member, this.gothram).subscribe((response: Member) => {
+      this.member = response;
+      this.prepareGothram();
+    });
+  }
 }
