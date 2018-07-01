@@ -34,7 +34,8 @@ export class RenderComponent implements OnInit {
               var d = {
                   id: m.id,
                   label: m.name,
-                  title: m.familyName
+                  title: m.familyName,
+                  group: m.gothram
               };
               this.graphData.nodes.push(d);
               this.prepareEdges(m.id, m.son, "Son", "#F98866", 'to');

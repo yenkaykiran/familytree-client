@@ -14,7 +14,7 @@
               </li>
             </ul>
           </nav>
-          <app-member *ngFor="let member of members; trackBy index;" [member]="member" (fetchRelated)="parent = null; fetchRelated($event, member)"></app-member>
+          <app-member *ngFor="let member of members; trackBy index;" [member]="member" (fetchRelated)="parent = null; fetchRelated($event, member)" [gothrams]="gothrams"></app-member>
         </div>
       </td>
       <td *ngIf="parent">
@@ -30,7 +30,7 @@
           {{parent.name}} {{title}}
         </div>
         <div *ngIf="event && event.relation && parent[event.relation]">
-          <app-member *ngFor="let member of parent[event.relation]; trackBy index;" [member]="member" (fetchRelated)="parent = null; fetchRelated($event, member)"></app-member>
+          <app-member *ngFor="let member of parent[event.relation]; trackBy index;" [member]="member" (fetchRelated)="parent = null; fetchRelated($event, member)" [gothrams]="gothrams"></app-member>
         </div>
       </td>
     </tr>

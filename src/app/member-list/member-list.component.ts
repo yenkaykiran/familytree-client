@@ -8,6 +8,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MemberEditComponent } from '../member-edit/member-edit.component';
 import { MemberLinkComponent } from '../member-link/member-link.component';
 
+import { Gothram, GothramHolder } from '../model/gothram';
+import { GothramService } from '../gothram/gothram.service';
+
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
@@ -15,7 +18,7 @@ import { MemberLinkComponent } from '../member-link/member-link.component';
 })
 export class MemberListComponent implements OnInit {
 
-  constructor(private service: MemberService, private modalService: NgbModal, private route: ActivatedRoute) { }
+  constructor(private service: MemberService, private modalService: NgbModal, private route: ActivatedRoute, private gService: GothramService) { }
 
   members: Member[];
   membersHolder: MemberHolder;
@@ -26,7 +29,10 @@ export class MemberListComponent implements OnInit {
   title: string;
   event: any;
 
+  gothrams: Gothram[];
+
   ngOnInit() {
+    this.getAllGothrams();
     this.route.paramMap.subscribe((params: ParamMap) => {
       let name = params.get('name');
       if(name) {
@@ -93,5 +99,11 @@ export class MemberListComponent implements OnInit {
 
   preparePages() {
     this.numbers = Array.from(Array(this.membersHolder.totalPages)).map((x,i)=>i);
+  }
+
+  getAllGothrams() {
+    this.gService.getAll().subscribe((res: GothramHolder) => {
+      this.gothrams = res.gothrams;
+    });
   }
 }

@@ -18,17 +18,17 @@ import { GothramService } from '../gothram/gothram.service';
 })
 export class MemberComponent implements OnInit {
 
-  constructor(private service: MemberService, private modalService: NgbModal, private gService: GothramService) { }
+  constructor(private service: MemberService, private modalService: NgbModal) { }
 
   @Input('member') member: Member;
   @Input('gothramId') gothramId: number;
   @Output('fetchRelated') related = new EventEmitter<any>();
 
-  gothrams: Gothram[];
+  @Input('gothrams') gothrams: Gothram[];
   gothram: Gothram;
 
   ngOnInit() {
-    this.getAllGothrams();
+    this.prepareGothram();
   }
 
   open() {
@@ -49,13 +49,6 @@ export class MemberComponent implements OnInit {
     this.related.emit({
       'relation': rel,
       'title': title
-    });
-  }
-
-  getAllGothrams() {
-    this.gService.getAll().subscribe((res: GothramHolder) => {
-      this.gothrams = res.gothrams;
-      this.prepareGothram();
     });
   }
 
