@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { MemberService } from '../member/member.service';
 import { Member, MemberHolder } from '../model/member';
+import { MemberData } from "../model/member-data";
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +31,13 @@ export class MemberListComponent implements OnInit {
   event: any;
 
   gothrams: Gothram[];
+
+  showRender = false;
+  mData: MemberData[];
+  graphData = {
+    nodes: [],
+    edges: []
+  };
 
   ngOnInit() {
     this.getAllGothrams();
@@ -105,5 +113,48 @@ export class MemberListComponent implements OnInit {
     this.gService.getAll().subscribe((res: GothramHolder) => {
       this.gothrams = res.gothrams;
     });
+  }
+
+  miniRender() {
+    this.service.miniExport(this.parent.id).subscribe((res: MemberData[]) => {
+        this.mData = res;
+        this.graphData = {
+            nodes: [],
+            edges: []
+        };
+        for (var i = 0; i < res.length; i++) {
+            var m = res[i];
+            var d = {
+                id: m.id,
+                label: m.name,
+                title: m.familyName,
+                group: m.gothram
+            };
+            this.graphData.nodes.push(d);
+            this.prepareEdges(m.id, m.son, "Son", "#F98866", 'to');
+            this.prepareEdges(m.id, m.daughter, "Daughter", "#FF420E", 'to');
+            if (m.gender.toString() == "MALE") {
+                this.prepareEdges(m.id, m.spouse, "Spouse", "#80BD9E", 'from,to');
+            }
+        }
+        this.showRender = true;
+    });
+  }
+
+  prepareEdges(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string) {
+      if (array && array.length > 0) {
+          for (var j = 0; j < array.length; j++) {
+              var e = {
+                  from: id,
+                  to: array[j],
+                  arrows: arrows,
+                  label: edgeLabel,
+                  color: {
+                      color: edgeColor
+                  }
+              };
+              this.graphData.edges.push(e);
+          }
+      }
   }
 }

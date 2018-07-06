@@ -79,6 +79,15 @@ export class MemberService {
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
 
+  miniExport(member: number): Observable<MemberData[]> {
+    return this.http.get("api/export?member=" + member)
+         .map((res: Response) => {
+           this.notificationsService.success("Members Data Successfully Exported");
+           return res.json();
+         })
+         .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+  }
+
   importData(memberData: MemberData[]): Observable<Response> {
     return this.http.post("api/import", memberData)
          .map((res: Response) => {

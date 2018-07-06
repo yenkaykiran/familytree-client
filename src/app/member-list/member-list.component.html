@@ -22,6 +22,10 @@
             <span class="fa fa-close"></span>
             <span>Close</span>
         </button>
+        <button type="button" class="btn btn-outline-info" (click)="miniRender()">Render</button>
+        <br />
+        <br />
+        <app-render-engine *ngIf="showRender" [elements]="mData"></app-render-engine>
         <br />
         <br />
         <div class="alert alert-info">
