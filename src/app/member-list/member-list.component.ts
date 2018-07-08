@@ -100,8 +100,8 @@ export class MemberListComponent implements OnInit {
     this.title = $event.title;
     this.event = $event;
     member[$event.relation] = null;
-    this.service.fetchRelated($event.relation, member).subscribe((res: MemberHolder) => {
-      member[$event.relation] = res.members;
+    this.service.fetchRelated($event.relation, member).subscribe((res: Member[]) => {
+      member[$event.relation] = res;
     });
   }
 

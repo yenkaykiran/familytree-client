@@ -22,7 +22,7 @@ export class MemberService {
   }
 
   getAllByName(name): Observable<MemberHolder> {
-    return this.http.get("api/member/search/nameStartsWith?name=" + name + "&sort=dateOfBirth,desc")
+    return this.http.get("api/member?name=" + name + "&sort=dateOfBirth,desc")
          .map((res: Response) => {
            this.notificationsService.success("Members List by Name " + name + "Received");
            return this.convertData(res.json());
@@ -44,11 +44,11 @@ export class MemberService {
     return this.http.delete("api/member/" + id);
   }
 
-  fetchRelated(relation: string, member: Member): Observable<MemberHolder> {
+  fetchRelated(relation: string, member: Member): Observable<Member[]> {
     return this.http.get("api/member/" + member.id + "/" + relation + "?sort=dateOfBirth,desc")
          .map((res: Response) => {
            this.notificationsService.success("Related Members List Received");
-           return this.convertData(res.json());
+           return res.json();
          });
   }
 
@@ -107,13 +107,13 @@ export class MemberService {
 
   private convertData(embedded: any): MemberHolder {
     let membersHolder = new MemberHolder();
-    membersHolder.members = embedded["_embedded"]["data"];
-    if(embedded.page) {
-      membersHolder.size = embedded.page.size;
-      membersHolder.totalElements = embedded.page.totalElements;
-      membersHolder.totalPages = embedded.page.totalPages;
-      membersHolder.number = embedded.page.number;
-    }
+    membersHolder.members = embedded["content"];
+    // if(embedded.page) {
+      membersHolder.size = embedded.size;
+      membersHolder.totalElements = embedded.totalElements;
+      membersHolder.totalPages = embedded.totalPages;
+      membersHolder.number = embedded.number;
+    // }
     return membersHolder;
   }
 

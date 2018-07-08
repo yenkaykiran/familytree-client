@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Member, MemberHolder } from '../model/member';
+import { Member } from '../model/member';
 import { MemberService } from '../member/member.service';
 
 import { Http, Response } from '@angular/http';
@@ -18,7 +18,6 @@ export class MemberUnlinkComponent implements OnInit {
   @Input('relation') relation: string;
   @Output('unlinked') unlinked = new EventEmitter();
 
-  membersHolder: MemberHolder;
   members: Member[];
 
   ngOnInit() {
@@ -26,15 +25,14 @@ export class MemberUnlinkComponent implements OnInit {
   }
 
   fetchRelated() {
-    this.service.fetchRelated(this.relation, this.member).subscribe((res: MemberHolder) => {
-      this.membersHolder = res;
-      this.members = res.members;
+    this.service.fetchRelated(this.relation, this.member).subscribe((res: Member[]) => {
+      this.members = res;
     });
   }
 
   unlink(selected) {
     this.service.unlinkMembers(selected.id, this.member.id, this.relation).subscribe((res: Response) => {
-      this.fetchRelated();
+      // this.fetchRelated();
       this.unlinked.emit();
     });
   }
