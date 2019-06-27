@@ -120,7 +120,27 @@ export class RenderEngineComponent implements OnChanges, OnInit {
         var options = {
             autoResize: true,
             height: '100%',
-            width: '100%'
+            width: '100%',
+            nodes: {
+              font: {
+                size: 20
+              }
+            }
+            // ,
+            // layout: {
+            //   improvedLayout:true,
+            //   hierarchical: {
+            //     enabled:true,
+            //     levelSeparation: 150,
+            //     nodeSpacing: 100,
+            //     treeSpacing: 200,
+            //     blockShifting: true,
+            //     edgeMinimization: true,
+            //     parentCentralization: true,
+            //     direction: 'UD',        // UD, DU, LR, RL
+            //     sortMethod: 'hubsize'   // hubsize, directed
+            //   }
+            // }
         };
         this.network = new Network(container, data, options);
         this.network.on("afterDrawing", function (ctx) {

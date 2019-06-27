@@ -57,7 +57,11 @@ export class RenderComponent implements OnInit {
                   label: edgeLabel,
                   color: {
                       color: edgeColor
-                  }
+                  },
+                  font: {
+                    size: 32
+                  },
+                  length: 150
               };
               this.graphData.edges.push(e);
           }
