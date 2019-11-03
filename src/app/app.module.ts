@@ -69,7 +69,7 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    NgbModule.forRoot(),
+    NgbModule,
     SimpleNotificationsModule.forRoot(),
     RouterModule.forRoot(
       appRoutes

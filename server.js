@@ -4,7 +4,7 @@ const path = require('path');
 const proxy = require('http-proxy-middleware');
 var https = require("https");
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/family-tree-client'));
 // Start the app by listening on the default
 // Heroku port
 
@@ -18,7 +18,7 @@ app.use("/api/*", proxy("/api", {
 }));
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/family-tree-client/index.html'));
 });
 
 // If an incoming request uses
@@ -49,5 +49,5 @@ const TWO_7_MINS = 27 * 60 * 1000;
     });
 }, TWO_7_MINS);*/
 
-    
+
 app.listen(process.env.PORT || 8080);
