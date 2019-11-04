@@ -6,7 +6,7 @@
     "start": "npm run deps && npm install && npm run build && node server.js",
     "start-dev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
-    "deps": "npm install -g @angular/cli@8.3.17",
+    "deps": "npm install @angular-devkit/build-angular@0.803.17 && npm install -g @angular/cli@8.3.17",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -34,6 +34,7 @@
     "rxjs-compat": "^6.0.0-rc.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.803.17",
     "@angular/cli": "~8.3.17",
     "@angular/compiler-cli": "~8.2.13",
     "@angular/language-service": "~8.2.13",
