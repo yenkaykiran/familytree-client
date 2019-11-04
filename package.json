@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "npm install && node server.js",
+    "start": "npm install && npm run build && node server.js",
     "start-dev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
