@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "npm run deps && npm install && npm run build && node server.js",
+    "start": "npm install && npm run build && node server.js",
     "start-dev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "deps": "npm i --only=dev",
@@ -24,6 +24,8 @@
     "@angular/router": "~8.2.13",
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
     "angular2-notifications": "2.0.0",
+    "@angular-devkit/build-angular": "~0.803.17",
+    "@angular/cli": "~8.3.17",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
@@ -34,8 +36,6 @@
     "rxjs-compat": "^6.0.0-rc.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.17",
-    "@angular/cli": "~8.3.17",
     "@angular/compiler-cli": "~8.2.13",
     "@angular/language-service": "~8.2.13",
     "@types/node": "~8.9.4",
