@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "npm install && npm run build && node server.js",
+    "start": "npm run deps && npm install && npm run build && node server.js",
     "start-dev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
+    "deps": "npm install -g @angular/cli@8.3.17",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
