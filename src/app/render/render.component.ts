@@ -35,7 +35,8 @@ export class RenderComponent implements OnInit {
                   id: m.id,
                   label: m.name,
                   title: m.familyName,
-                  group: m.gothram
+                  group: m.gothram,
+				  root: m.root
               };
               this.graphData.nodes.push(d);
               this.prepareEdges(m.id, m.son, "Son", "#F98866", 'to');
@@ -61,7 +62,9 @@ export class RenderComponent implements OnInit {
                   font: {
                     size: 32
                   },
-                  length: 150
+                  length: 150,
+				  id: id + "-" + array[j],
+				  kind: "parent"
               };
               this.graphData.edges.push(e);
           }

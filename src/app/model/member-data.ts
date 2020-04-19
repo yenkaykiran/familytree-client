@@ -17,4 +17,5 @@ export class MemberData {
   spouse: number[];
   father: number;
   mother: number;
+  root: string;
 }

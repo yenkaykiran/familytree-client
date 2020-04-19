@@ -125,7 +125,23 @@ export class RenderEngineComponent implements OnChanges, OnInit {
               font: {
                 size: 20
               }
-            }
+            },
+			layout: {
+			  improvedLayout:true,
+			  hierarchical: {
+				direction: 'UD',
+				sortMethod: "directed",
+				nodeSpacing: 250,
+				levelSeparation: 300,
+				edgeMinimization: true,
+				blockShifting: true
+			  }
+			},
+			physics: {
+			  hierarchicalRepulsion: {
+				avoidOverlap: 1
+			  }
+			}
             // ,
             // layout: {
             //   improvedLayout:true,

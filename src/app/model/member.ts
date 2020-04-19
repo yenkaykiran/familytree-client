@@ -29,4 +29,5 @@ export class Member {
   spouse: Member[];
   father: Member;
   mother: Member;
+  root: string;
 }
