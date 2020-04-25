@@ -133,7 +133,7 @@ export class RenderEngineComponent implements OnChanges, OnInit {
 				sortMethod: "directed",
 				nodeSpacing: 1500,
 				levelSeparation: 300,
-				edgeMinimization: false,
+				edgeMinimization: true,
 				blockShifting: true
 			  }
 			},
