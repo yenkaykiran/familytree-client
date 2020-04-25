@@ -131,9 +131,9 @@ export class RenderEngineComponent implements OnChanges, OnInit {
 			  hierarchical: {
 				direction: 'UD',
 				sortMethod: "directed",
-				nodeSpacing: 250,
+				nodeSpacing: 1500,
 				levelSeparation: 300,
-				edgeMinimization: true,
+				edgeMinimization: false,
 				blockShifting: true
 			  }
 			},
