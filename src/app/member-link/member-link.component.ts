@@ -20,6 +20,7 @@ export class MemberLinkComponent implements OnInit {
 
   membersHolder: MemberHolder;
   members: Member[];
+  name:string;
 
   ngOnInit() {
   }

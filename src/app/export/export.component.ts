@@ -15,14 +15,16 @@ export class ExportComponent implements OnInit {
   constructor(private service: MemberService) { }
 
   exported: string;
+  pretty: string;
 
   ngOnInit() {
     this.service.export().subscribe((res: MemberData[]) => {
       this.exported = JSON.stringify(res);
+	  this.pretty = this.pretty1();
     });
   }
 
-  get pretty() : string {
+  pretty1() : string {
     var ugly = this.exported;
     var obj = JSON.parse(ugly);
     return JSON.stringify(obj, undefined, 4);

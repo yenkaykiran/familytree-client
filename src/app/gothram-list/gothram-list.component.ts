@@ -62,5 +62,8 @@ export class GothramListComponent implements OnInit {
       this.getAll();
     });
   }
-
+  
+  id(gothram:Gothram) {
+	  return gothram.id;
+  }
 }

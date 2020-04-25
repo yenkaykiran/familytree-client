@@ -14,7 +14,7 @@ import { GothramService } from '../gothram/gothram.service';
 })
 export class MemberEditComponent implements OnInit {
 
-  constructor(private activeModal: NgbActiveModal, private service: MemberService, private gService: GothramService) { }
+  constructor(private activeModalF: NgbActiveModal, private service: MemberService, private gService: GothramService) { }
 
   @Input('member') member: Member;
 
@@ -38,7 +38,7 @@ export class MemberEditComponent implements OnInit {
         this.member = response;
         this.prepareGothram();
       });
-      this.activeModal.close(res);
+      this.activeModalF.close(res);
     });
   }
 
@@ -58,5 +58,9 @@ export class MemberEditComponent implements OnInit {
         }
       }
     }
+  }
+  
+  activeModal() {
+	  return this.activeModalF;
   }
 }

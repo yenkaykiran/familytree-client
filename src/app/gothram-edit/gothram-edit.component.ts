@@ -11,7 +11,7 @@ import { GothramService } from '../gothram/gothram.service';
 })
 export class GothramEditComponent implements OnInit {
 
-  constructor(private activeModal: NgbActiveModal, private service: GothramService) { }
+  constructor(private activeModalF: NgbActiveModal, private service: GothramService) { }
 
   @Input('gothram') gothram: Gothram;
 
@@ -20,7 +20,11 @@ export class GothramEditComponent implements OnInit {
 
   save() {
     this.service.save(this.gothram).subscribe((res: Gothram) => {
-      this.activeModal.close(res);
+      this.activeModalF.close(res);
     });
+  }
+    
+  activeModal() {
+	  return this.activeModalF;
   }
 }

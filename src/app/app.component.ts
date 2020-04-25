@@ -41,8 +41,11 @@ export class AppComponent implements OnInit {
     timeOut: 3000
   };
   show:boolean = false;
+  tokenService:TokenService;
 
-  constructor(private route: Router, private location: Location, private tokenService: TokenService, private cdr: ChangeDetectorRef) { }
+  constructor(private route: Router, private location: Location, private ts: TokenService, private cdr: ChangeDetectorRef) {
+	  this.tokenService = ts;
+  }
 
   isIn = false;
   name: string;

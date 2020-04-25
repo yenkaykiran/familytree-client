@@ -6,7 +6,7 @@
       </button>
       <br /><br />
       <div *ngIf="gothramsHolder">
-        <app-gothram *ngFor="let gothram of gothrams; trackBy index;" [gothram]="gothram"></app-gothram>
+        <app-gothram *ngFor="let gothram of gothrams; trackBy id;" [gothram]="gothram"></app-gothram>
       </div>
     </div>
   </div>

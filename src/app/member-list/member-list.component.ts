@@ -157,4 +157,8 @@ export class MemberListComponent implements OnInit {
           }
       }
   }
+  
+  id(member:Member) {
+	  return member.id;
+  }
 }

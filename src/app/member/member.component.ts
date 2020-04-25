@@ -72,4 +72,12 @@ export class MemberComponent implements OnInit {
       this.prepareGothram();
     });
   }
+  
+  makeRoot() {
+	this.member.root = 'true';
+    this.service.makeRoot(this.member).subscribe((response: Member) => {
+      this.member = response;
+      this.prepareGothram();
+    });
+  }
 }

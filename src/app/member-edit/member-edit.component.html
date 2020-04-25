@@ -1,7 +1,7 @@
 <form (ngSubmit)="save()">
   <div class="modal-header">
     <h4 class="modal-title">Edit Member</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.close(member)">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal().close(member)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -40,7 +40,7 @@
 	<div class="form-group">
       <div class="form-check">
 	    <label class="form-check-label">
-          <input type="checkbox" name="root" [ngModel]="member.root"> Root
+          <input type="checkbox" name="root" [(ngModel)]="member.root"> Is Root ?
 	    </label>
 	  </div>
     </div>
@@ -70,7 +70,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(member)">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal().close(member)">Close</button>
     <button type="submit" class="btn btn-outline-success" [disabled]="isSaving">Save</button>
   </div>
 </form>

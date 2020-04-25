@@ -38,6 +38,15 @@ export class MemberService {
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
+  
+  makeRoot(member: Member): Observable<Member> {
+    return this.http.post("api/member/root", member)
+         .map((res: Response) => {
+           this.notificationsService.success("Member Made Root Sucessfully");
+           return res.json();
+         })
+         .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+  }
 
   delete(id: number): Observable<Response> {
     this.notificationsService.success("Member Removed Successfully");
