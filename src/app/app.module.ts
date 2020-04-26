@@ -21,6 +21,8 @@ import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MemberLinkComponent } from './member-link/member-link.component';
 import { MemberUnlinkComponent } from './member-unlink/member-unlink.component';
 import { RenderEngineComponent } from './render-engine/render-engine.component';
+import { RenderEngineSpringyComponent } from './render-engine-springy/render-engine-springy.component';
+
 import { ExportComponent } from './export/export.component';
 
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
@@ -57,6 +59,7 @@ const appRoutes: Routes = [
     MemberLinkComponent,
     MemberUnlinkComponent,
     RenderEngineComponent,
+    RenderEngineSpringyComponent,
     ExportComponent,
     GothramComponent,
     GothramListComponent,
