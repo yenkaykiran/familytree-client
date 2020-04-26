@@ -1,10 +1,7 @@
 import {Component, OnChanges, Renderer, ElementRef, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
-import { Springy } from 'springy';
-
-import { Network, DataSet, Node, Edge } from 'vis';
-
-var Dracula = require('graphdracula')
+var cytoscape = require('cytoscape');
+var dagre = require('cytoscape-dagre');
 
 @Component({
   selector: 'app-render-engine-springy',
@@ -21,31 +18,80 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
     @Input() public zoom: any;
     @Output() select: EventEmitter<any> = new EventEmitter<any>();
 
+	btnVisible = false;
+	
+	cy: any;
+	
     ngOnChanges(): any {
-        this.render();
+        console.log(this.elements);
+		cytoscape.use(dagre);
+		this.render();
     }
 
     ngOnInit() {
-
+		//cytoscape.use(dagre);
+		//this.render();
     }
 
     render() {
+		
+		  this.cy = cytoscape({
+          container: document.getElementById('cy'),
 
-      var Graph = Dracula.Graph
-      var Renderer = Dracula.Renderer.Raphael
-      var Layout = Dracula.Layout.Spring
+		  boxSelectionEnabled: false,
+		  autounselectify: true,
+		  textureOnViewport: true,
+		  hideEdgesOnViewport: true,
 
-      var graph = new Graph()
+          layout: {
+            name: 'dagre'
+          },
 
-      graph.addEdge('Banana', 'Apple')
-      graph.addEdge('Apple', 'Kiwi')
-      graph.addEdge('Apple', 'Dragonfruit')
-      graph.addEdge('Dragonfruit', 'Banana')
-      graph.addEdge('Kiwi', 'Banana')
+          style: [
+            {
+              selector: 'node',
+              style: {
+                  //'background-color': '#11479e',
+				  'label': 'data(label)',
+				  'text-valign': 'center',
+				  'text-halign': 'center',
+				  'width': 'label',
+				  'height': 'label',
+				  //'shape': 'roundrectangle',
+				  'padding': '10px'
+				  //'background-color': "#4fbcef"
+			  }
+            },
 
-      var layout = new Layout(graph)
-      var renderer = new Renderer('#paper', graph, 400, 300)
-      renderer.draw()
+            {
+              selector: 'edge',
+              style: {
+                'width': 4,
+                'target-arrow-shape': 'triangle',
+                'line-color': '#9dbaea',
+                'target-arrow-color': '#9dbaea',
+                'curve-style': 'bezier',
+				
+              'label': 'data(label)',
+              'text-background-color': 'white',
+              'text-background-opacity': '1',
+              'text-border-color': 'black',
+              'text-border-opacity': '1',
+              'text-border-width': '1',
+              'text-background-shape': 'rectangle',
+              'text-background-padding': '3px'
+              }
+            }
+          ],
+
+          elements: this.elements
+        });
+		this.btnVisible = false;
 
     }
+	
+	save() {
+	  
+	}
+	
 }

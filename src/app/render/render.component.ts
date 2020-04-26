@@ -32,11 +32,10 @@ export class RenderComponent implements OnInit {
           for (var i = 0; i < res.length; i++) {
               var m = res[i];
               var d = {
-                  id: m.id,
-                  label: m.name,
-                  title: m.familyName,
-                  group: m.gothram,
-				  root: m.root
+                  data: {
+					  id: m.id,
+					  label: m.name
+				  }
               };
               this.graphData.nodes.push(d);
               this.prepareEdges(m.id, m.son, "Son", "#F98866", 'to');
@@ -51,7 +50,7 @@ export class RenderComponent implements OnInit {
   prepareEdges(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string) {
       if (array && array.length > 0) {
           for (var j = 0; j < array.length; j++) {
-              var e = {
+              /*var e = {
                   from: id,
                   to: array[j],
                   arrows: arrows,
@@ -65,6 +64,13 @@ export class RenderComponent implements OnInit {
                   length: 150,
 				  id: id + "-" + array[j],
 				  kind: "parent"
+              };*/
+			  var e = {
+				data: {
+					source: id,
+					target: array[j],
+					label: edgeLabel
+				}
               };
               this.graphData.edges.push(e);
           }
