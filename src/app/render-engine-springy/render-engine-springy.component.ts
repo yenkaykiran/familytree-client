@@ -90,15 +90,7 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
             }
           ],
 
-          elements: {
-  "id": "root",
-  "properties": {
-      "direction": "RIGHT", "spacing": 40
-  },
-  "children": [{"id": "n1", "width": 40, "height": 40},
-               {"id": "n2", "width": 40, "height": 40}],
-  "edges": [{"id": "e1", "source": "n1", "target": "n2"}]
-}
+          elements: this.elements
         });
 		this.btnVisible = false;
 
