@@ -2,6 +2,7 @@ import {Component, OnChanges, Renderer, ElementRef, Input, Output, EventEmitter,
 
 var cytoscape = require('cytoscape');
 var dagre = require('cytoscape-dagre');
+var klay = require('cytoscape-klay');
 
 @Component({
   selector: 'app-render-engine-springy',
@@ -19,13 +20,14 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
     @Output() select: EventEmitter<any> = new EventEmitter<any>();
 
 	btnVisible = false;
-	
+
 	cy: any;
-	
+
     ngOnChanges(): any {
         console.log(this.elements);
-		cytoscape.use(dagre);
-		this.render();
+		    //cytoscape.use(dagre);
+        cytoscape.use(klay);
+		    this.render();
     }
 
     ngOnInit() {
@@ -34,7 +36,7 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
     }
 
     render() {
-		
+
 		  this.cy = cytoscape({
           container: document.getElementById('cy'),
 
@@ -44,7 +46,11 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
 		  hideEdgesOnViewport: true,
 
           layout: {
-            name: 'dagre'
+            name: 'klay'
+            //rankDir: 'TB',
+            //ranker: 'tight-tree'
+            //edgeSep: 20,
+            //nodeSep: 5
           },
 
           style: [
@@ -71,7 +77,7 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
                 'line-color': '#9dbaea',
                 'target-arrow-color': '#9dbaea',
                 'curve-style': 'bezier',
-				
+
               'label': 'data(label)',
               'text-background-color': 'white',
               'text-background-opacity': '1',
@@ -84,14 +90,22 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
             }
           ],
 
-          elements: this.elements
+          elements: {
+  "id": "root",
+  "properties": {
+      "direction": "RIGHT", "spacing": 40
+  },
+  "children": [{"id": "n1", "width": 40, "height": 40},
+               {"id": "n2", "width": 40, "height": 40}],
+  "edges": [{"id": "e1", "source": "n1", "target": "n2"}]
+}
         });
 		this.btnVisible = false;
 
     }
-	
+
 	save() {
-	  
+
 	}
-	
+
 }
