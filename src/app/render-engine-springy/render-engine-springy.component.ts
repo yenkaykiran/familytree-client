@@ -47,6 +47,9 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
 
           layout: {
             name: 'klay'
+            klay: 
+              "direction": "DOWN"
+            }
             //rankDir: 'TB',
             //ranker: 'tight-tree'
             //edgeSep: 20,
