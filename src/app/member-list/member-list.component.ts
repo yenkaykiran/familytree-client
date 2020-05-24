@@ -33,6 +33,7 @@ export class MemberListComponent implements OnInit {
   gothrams: Gothram[];
 
   showRender = false;
+  showRenderCyto = false;
   mData: MemberData[];
   graphData = {
     nodes: [],
@@ -116,6 +117,8 @@ export class MemberListComponent implements OnInit {
   }
 
   miniRender() {
+	this.showRender = false;
+    this.showRenderCyto = false;
     this.service.miniExport(this.parent.id).subscribe((res: MemberData[]) => {
         this.mData = res;
         this.graphData = {
@@ -140,6 +143,34 @@ export class MemberListComponent implements OnInit {
         this.showRender = true;
     });
   }
+  
+  miniRenderCyto() {
+	this.showRender = false;
+    this.showRenderCyto = false;
+    this.service.miniExport(this.parent.id).subscribe((res: MemberData[]) => {
+        this.mData = res;
+        this.graphData = {
+            nodes: [],
+            edges: []
+        };
+        for (var i = 0; i < res.length; i++) {
+            var m = res[i];
+            var d = {
+			    data: {
+				  id: m.id,
+				  label: m.name
+			    }
+		    };
+            this.graphData.nodes.push(d);
+            this.prepareEdgesCyto(m.id, m.son, "Son", "#9dbaea", 'to', 'none');
+            this.prepareEdgesCyto(m.id, m.daughter, "Daughter", "#FF420E", 'to', 'none');
+            if (m.gender.toString() == "MALE") {
+                this.prepareEdgesCyto(m.id, m.spouse, "Spouse", "#80BD9E", 'from,to', 'triangle');
+            }
+        }
+        this.showRenderCyto = true;
+    });
+  }
 
   prepareEdges(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string) {
       if (array && array.length > 0) {
@@ -152,6 +183,24 @@ export class MemberListComponent implements OnInit {
                   color: {
                       color: edgeColor
                   }
+              };
+              this.graphData.edges.push(e);
+          }
+      }
+  }
+  
+  prepareEdgesCyto(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string, sourceArrow: string) {
+      if (array && array.length > 0) {
+          for (var j = 0; j < array.length; j++) {
+              var e = {
+				data: {
+					source: id,
+					target: array[j],
+					label: edgeLabel,
+					sarrow: sourceArrow,
+					tarrow: 'triangle',
+					color: edgeColor
+				}
               };
               this.graphData.edges.push(e);
           }

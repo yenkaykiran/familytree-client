@@ -23,9 +23,11 @@
             <span>Close</span>
         </button>
         <button type="button" class="btn btn-outline-info" (click)="miniRender()">Render</button>
+		<button type="button" class="btn btn-outline-info" (click)="miniRenderCyto()">Cyto Render</button>
         <br />
         <br />
         <app-render-engine *ngIf="showRender" [elements]="graphData"></app-render-engine>
+		<app-render-engine-springy *ngIf="showRenderCyto && graphData && graphData.nodes && graphData.edges" [elements]="graphData"></app-render-engine-springy>
         <br />
         <br />
         <div class="alert alert-info">

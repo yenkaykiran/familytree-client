@@ -47,9 +47,6 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
 
           layout: {
             name: 'klay'
-            klay: 
-              "direction": "DOWN"
-            }
             //rankDir: 'TB',
             //ranker: 'tight-tree'
             //edgeSep: 20,
@@ -76,15 +73,17 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
               selector: 'edge',
               style: {
                 'width': 4,
-                'target-arrow-shape': 'triangle',
-                'line-color': '#9dbaea',
-                'target-arrow-color': '#9dbaea',
+                'source-arrow-shape': 'data(sarrow)',
+				'target-arrow-shape': 'data(tarrow)',
+                'line-color': 'data(color)',
+				'source-arrow-color': 'data(color)',
+                'target-arrow-color': 'data(color)',
                 'curve-style': 'bezier',
 
               'label': 'data(label)',
               'text-background-color': 'white',
               'text-background-opacity': '1',
-              'text-border-color': 'black',
+              'text-border-color': 'data(color)',
               'text-border-opacity': '1',
               'text-border-width': '1',
               'text-background-shape': 'rectangle',
@@ -95,12 +94,28 @@ export class RenderEngineSpringyComponent implements OnChanges, OnInit {
 
           elements: this.elements
         });
-		this.btnVisible = false;
+		this.btnVisible = true;
+		
+		this.cy.ready(function () {
+		  this.btnVisible = true;
+		  //if you want to create the img tag afterwards:
+		  //$('#right').prepend("<img id='png-eg'>");
+		  
+		  if(this.cy) {
+			  var png64 = this.cy.png();
+			  // put the png data in an img tag
+			  var imgTag = document.getElementById('png-eg');
+			  imgTag['src'] = png64;
+		  }
+		});
 
     }
 
 	save() {
-
+		var png64 = this.cy.png();
+		  // put the png data in an img tag
+		  var imgTag = document.getElementById('png-eg');
+		  imgTag['src'] = png64;
 	}
 
 }

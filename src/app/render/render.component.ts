@@ -38,16 +38,16 @@ export class RenderComponent implements OnInit {
 				  }
               };
               this.graphData.nodes.push(d);
-              this.prepareEdges(m.id, m.son, "Son", "#F98866", 'to');
-              this.prepareEdges(m.id, m.daughter, "Daughter", "#FF420E", 'to');
+              this.prepareEdges(m.id, m.son, "Son", "#9dbaea", 'to', 'none');
+              this.prepareEdges(m.id, m.daughter, "Daughter", "#FF420E", 'to', 'none');
               if (m.gender.toString() == "MALE") {
-                  this.prepareEdges(m.id, m.spouse, "Spouse", "#80BD9E", 'from,to');
+                  this.prepareEdges(m.id, m.spouse, "Spouse", "#80BD9E", 'from,to', 'triangle');
               }
           }
       });
   }
 
-  prepareEdges(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string) {
+  prepareEdges(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string, sourceArrow: string) {
       if (array && array.length > 0) {
           for (var j = 0; j < array.length; j++) {
               /*var e = {
@@ -69,7 +69,10 @@ export class RenderComponent implements OnInit {
 				data: {
 					source: id,
 					target: array[j],
-					label: edgeLabel
+					label: edgeLabel,
+					sarrow: sourceArrow,
+					tarrow: 'triangle',
+					color: edgeColor
 				}
               };
               this.graphData.edges.push(e);
