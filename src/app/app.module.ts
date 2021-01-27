@@ -32,6 +32,7 @@ import { TokenService } from './services/token.service';
 import { GothramEditComponent } from './gothram-edit/gothram-edit.component';
 import { ImportDataComponent } from './import-data/import-data.component';
 import { RenderComponent } from './render/render.component';
+import { TreantRenderEngineComponent } from './treant-render-engine/treant-render-engine.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
     GothramListComponent,
     GothramEditComponent,
     ImportDataComponent,
-    RenderComponent
+    RenderComponent,
+    TreantRenderEngineComponent
   ],
   imports: [
     FormsModule,

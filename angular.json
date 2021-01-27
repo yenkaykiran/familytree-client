@@ -27,9 +27,17 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/treant-js/Treant.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/treant-js/vendor/raphael.js",
+              "node_modules/sigma/build/sigma.min.js",
+              "node_modules/sigma/build/plugins/sigma.parsers.json.min.js",
+              "node_modules/sigma/build/plugins/sigma.parsers.min.gexf.js",
+              "node_modules/sigma/build/plugins/sigma.layout.forceAtlas2.min.js",
+              "node_modules/sigma/build/plugins/sigma.renderers.customShapes.min.js",
+            ]
           },
           "configurations": {
             "production": {
