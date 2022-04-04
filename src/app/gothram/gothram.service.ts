@@ -44,7 +44,7 @@ export class GothramService {
 
   private convertData(embedded: any): GothramHolder {
     let gothramHolder = new GothramHolder();
-    gothramHolder.gothrams = embedded["_embedded"]["data"];
+    gothramHolder.gothrams = embedded["content"];//embedded["_embedded"]["data"];
     return gothramHolder;
   }
 
