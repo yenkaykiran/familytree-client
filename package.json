@@ -1,6 +1,9 @@
 {
   "name": "family-tree-client",
   "version": "0.0.1",
+  "engines": {
+    "node": "8.6.2"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
