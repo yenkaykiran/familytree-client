@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/dist/family-tree-client'));
 // Heroku port
 
 app.use("/api/*", proxy("/api", {
-  "target": "https://nk-tree.herokuapp.com/",
+  "target": "https://nk-tree.fly.dev/",
   "changeOrigin": true,
   "logLevel": "debug",
   "pathRewrite": {
