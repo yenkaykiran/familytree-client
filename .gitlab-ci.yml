@@ -1,17 +1,21 @@
 image: node:8.16.2-alpine
 
-cache:
-  paths:
-  - node_modules/
-
-production:
-  type: deploy
-  image: ruby:latest
-  script:
+before_script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
-    - dpl --provider=heroku --app=nk-tree-client --api-key=$HEROKU_API_KEY
-  only:
-    - master
 
+stages:
+    - production
+
+production:
+    stage: production
+    image: ruby:latest
+    script:
+        - dpl --provider=heroku --app=nk-tree-client --api-key=$HEROKU_API_KEY
+    only:
+        - master
+
+cache:
+  paths:
+  - node_modules/
