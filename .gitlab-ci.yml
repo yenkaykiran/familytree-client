@@ -14,3 +14,4 @@ production:
     - dpl --provider=heroku --app=nk-tree-client --api-key=$HEROKU_API_KEY
   only:
     - master
+
