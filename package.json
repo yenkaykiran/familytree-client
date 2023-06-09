@@ -2,7 +2,7 @@
   "name": "family-tree-client",
   "version": "0.0.1",
   "engines": {
-    "node": "8.6.2"
+    "node": "10.9"
   },
   "scripts": {
     "ng": "ng",
