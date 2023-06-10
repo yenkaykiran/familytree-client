@@ -1,7 +1,8 @@
 image: node:8.16.2-alpine
 
 before_script:
-    - apt-get update -qq && apt-get install -y curl
+    - apt-get update -qy
+    - apt-get install -y curl
     - curl -L https://fly.io/install.sh | sh
 
 stages:
@@ -9,6 +10,7 @@ stages:
 
 production:
     stage: production
+    image: node:8.16.2-alpine
     script:
         - flyctl deploy
     only:
