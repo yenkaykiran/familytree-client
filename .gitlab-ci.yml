@@ -12,7 +12,7 @@ production:
     stage: production
 #    image: node:8.16.2-alpine
     script:
-        - flyctl deploy
+        - /root/.fly/bin/flyctl deploy
     only:
         - master
 
