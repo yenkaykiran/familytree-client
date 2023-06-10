@@ -11,6 +11,10 @@ kill_timeout = "5s"
 [processes]
   app = "node server.js"
 
+[build]
+  image = "node:8.16.2-alpine"
+
+
 [[services]]
   protocol = "tcp"
   internal_port = 8080
