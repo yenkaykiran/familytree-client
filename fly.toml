@@ -12,8 +12,8 @@ kill_timeout = "5s"
   app = "node server.js"
 
 [build]
-  image = "node:8.16.2-alpine"
-
+  builder = "paketobuildpacks/builder:base"
+  buildpacks = ["gcr.io/paketo-buildpacks/nodejs"]
 
 [[services]]
   protocol = "tcp"
