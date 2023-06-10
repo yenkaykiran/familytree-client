@@ -10,7 +10,7 @@ stages:
 
 production:
     stage: production
-    image: node:8.16.2-alpine
+#    image: node:8.16.2-alpine
     script:
         - flyctl deploy
     only:
