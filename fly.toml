@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for nk-tree-client on 2023-06-10T21:09:41+05:30
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "nk-tree-client"
+primary_region = "ams"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[processes]
+  app = "node server.js"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20

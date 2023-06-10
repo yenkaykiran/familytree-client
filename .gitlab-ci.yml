@@ -1,21 +1,31 @@
-image: node:8.16.2-alpine
-
-before_script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-
-stages:
-    - production
-
-production:
-    stage: production
-    image: ruby:latest
-    script:
-        - dpl --provider=heroku --app=nk-tree-client --api-key=$HEROKU_API_KEY
-    only:
-        - master
+#image: node:8.16.2-alpine
+#
+#before_script:
+#    - apt-get update -qy
+#    - apt-get install -y ruby-dev
+#    - gem install dpl
+#
+#stages:
+#    - production
+#
+#production:
+#    stage: production
+#    image: ruby:latest
+#    script:
+#        - dpl --provider=heroku --app=nk-tree-client --api-key=$HEROKU_API_KEY
+#    only:
+#        - master
 
 cache:
   paths:
   - node_modules/
+
+default:
+  image: node:8.16.2-alpine
+  before_script:
+    - apt-get update -qq && apt-get install -y curl
+    - curl -L https://fly.io/install.sh | sh
+
+deploy:
+  script:
+    - flyctl deploy
