@@ -11,7 +11,7 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    container: 10.9-alpine
+    container: node:10.9-alpine
 
     steps:
       - name: Github checkout
