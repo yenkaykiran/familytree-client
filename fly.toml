@@ -11,9 +11,6 @@ kill_timeout = "5s"
 [processes]
   app = "node server.js"
 
-[build]
-  builder = "heroku/nodejs"
-
 [[services]]
   protocol = "tcp"
   internal_port = 8080
