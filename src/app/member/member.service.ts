@@ -21,6 +21,14 @@ export class MemberService {
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
 
+  syncSpouse(): Observable<void> {
+    return this.http.get("api/sync-spouse")
+         .map((res: Response) => {
+           this.notificationsService.success("Members Spouse Synced");
+         })
+         .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+  }
+
   getAllByName(name): Observable<MemberHolder> {
     return this.http.get("api/member?name=" + name + "&sort=dateOfBirth,desc")
          .map((res: Response) => {
@@ -38,7 +46,7 @@ export class MemberService {
          })
          .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
-  
+
   makeRoot(member: Member): Observable<Member> {
     return this.http.post("api/member/root", member)
          .map((res: Response) => {

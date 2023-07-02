@@ -92,6 +92,12 @@ export class MemberListComponent implements OnInit {
     });
   }
 
+  syncSpouse() {
+    this.service.syncSpouse().subscribe((res: void) => {
+      this.getAll();
+    });
+  }
+
   fetchRelatedAgain(member: Member) {
     this.fetchRelated(this.event, member);
   }
@@ -143,7 +149,7 @@ export class MemberListComponent implements OnInit {
         this.showRender = true;
     });
   }
-  
+
   miniRenderCyto() {
 	this.showRender = false;
     this.showRenderCyto = false;
@@ -188,7 +194,7 @@ export class MemberListComponent implements OnInit {
           }
       }
   }
-  
+
   prepareEdgesCyto(id: number, array: number[], edgeLabel: string, edgeColor: string, arrows: string, sourceArrow: string) {
       if (array && array.length > 0) {
           for (var j = 0; j < array.length; j++) {
@@ -206,7 +212,7 @@ export class MemberListComponent implements OnInit {
           }
       }
   }
-  
+
   id(member:Member) {
 	  return member.id;
   }
