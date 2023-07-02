@@ -6,6 +6,10 @@
             <span class="fa fa-plus"></span>
             <span>Add</span>
         </button>
+        <button class="btn btn-outline-secondary float-right" (click)="syncSpouse()">
+          <span class="fa fa-refresh"></span>
+          <span>Sync Spouse</span>
+        </button>
         <div *ngIf="membersHolder">
           <nav>
             <ul class="pagination">
