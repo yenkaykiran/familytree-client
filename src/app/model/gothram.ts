@@ -1,3 +1,4 @@
+
 export class GothramHolder {
   gothrams: Gothram[];
 }
